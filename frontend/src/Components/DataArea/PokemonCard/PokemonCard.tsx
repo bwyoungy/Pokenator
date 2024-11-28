@@ -18,7 +18,10 @@ function PokemonCard(props: PokemonCardProps): JSX.Element {
 			<NavLink to={"/pokemon/details/" + props.pokemon.name}>
                 <img src={props.pokemon.spriteUrl} alt={"Picture of " + props.pokemon.name} title={"Picture of " + props.pokemon.name}/>
             </NavLink>
-            <p>{props.pokemon.types.join(" ")}</p>
+            <div className="PokemonTypes">
+                {props.pokemon.types.map(t => (<span key={t} className={`type-badge ${t}`}>{t}</span>))}
+            </div>
+            {/* <p>{props.pokemon.types.join(" ")}</p> */}
         </div>
     );
 }
