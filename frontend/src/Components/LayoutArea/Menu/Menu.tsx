@@ -5,8 +5,8 @@ function Menu(): JSX.Element {
     return (
         <div className="Menu">
 			<NavLink to="/home">Home</NavLink>
-            <span>|</span>
-            TBA
+            <span> | </span>
+            <NavLink to="/pokemon">Pokemon</NavLink>
         </div>
     );
 }
