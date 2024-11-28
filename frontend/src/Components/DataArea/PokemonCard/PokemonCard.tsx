@@ -14,7 +14,7 @@ function capitaliseWord(name: string) : string {
 function PokemonCard(props: PokemonCardProps): JSX.Element {
     return (
         <div className="PokemonCard Card">
-            <h3>#{props.pokemon.id}: {capitaliseWord(props.pokemon.name)}</h3>
+            <h3>#{props.pokemon.id}: {props.pokemon.getDisplayName()}</h3>
 			<NavLink to={"/pokemon/details/" + props.pokemon.name}>
                 <img src={props.pokemon.spriteUrl} alt={"Picture of " + props.pokemon.name} title={"Picture of " + props.pokemon.name}/>
             </NavLink>
