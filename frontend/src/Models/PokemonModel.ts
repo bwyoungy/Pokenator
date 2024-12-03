@@ -7,16 +7,32 @@ class PokemonModel {
                         public moves:string[],
                         public abilities:string[]) {}
 
-    // Function to get display name of Pokemon formatted to replace hyphens with spaces and capitalise first letter of words
+    // Helper function to format attributes
+    // Replacing hyphens with spaces and capitalising first letter of words
+    private formatAttribute(word:string):string {
+        return word
+                .split("-")
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(" ");
+    }
+
+    // Function to get display name of Pokemon
     public getDisplayName():string {
-        return this.name.replace(/mr-(\w+)/g, (_, match) => `mr. ${match}`) // Handle Mr. pokemon formatting
-                        .replace(/\bjr\b/, 'jr.') // Handle Jr. pokemon formatting
-                        .replace(/-(m|f)$/, (_, sex) => sex === 'm' ? '♂' : '♀') // Handle sex symbols formatting
-                        .replace(/fetchd$/, "fetch'd") // Handle -fetch'd evolution line formatting
-                        .replace(/-/g, ' ') // Replace hypen with space
-                        .split(' ') // Split string into words
-                        .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalise first letter of each word
-                        .join(' '); // Re-join into one string
+        return this.formatAttribute(this.name) // Format name to replace hyphens with space and captialise words
+                    .replace(/Mr (\w+)/g, (_, match) => `Mr. ${match}`) // Handle Mr. pokemon formatting
+                    .replace(/\bJr\b/, 'Jr.') // Handle Jr. pokemon formatting
+                    .replace(/ (M|F)$/, (_, sex) => sex === 'M' ? '♂' : '♀') // Handle sex symbols formatting
+                    .replace(/fetchd$/, "fetch'd") // Handle -fetch'd evolution line formatting
+    }
+
+    // Function to get display of moves
+    public getDisplayMoves():string[] {
+        return this.moves.map(move => this.formatAttribute(move));
+    }
+
+    // Function to get display of abilities
+    public getDisplayAbilities():string[] {
+        return this.abilities.map(ability => this.formatAttribute(ability));
     }
 }
 
