@@ -1,3 +1,19 @@
-.PokemonList {
-	
+.loader {
+    /* Set border as rounded so conforms to pokeball shape */
+    border-radius: 50%;
+    /* Set width & height relative to minimum viewport for compatibility with different screen sizes */
+    width: 50vmin;
+    height: 50vmin;
+    animation: spin 1.5s linear infinite;
+    background-image: url("/public/images/pokeball.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+/* full circle rotation animation */
+@keyframes spin {
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(360deg) }
 }

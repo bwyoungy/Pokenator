@@ -9,12 +9,23 @@ function PokemonList(): JSX.Element {
 
     const [pokemon, setPokemon] = useState<PokemonModel[]>([]);
     const [generation, setGeneration] = useState<number>(1); // Default generation on pageload is 1
+    const [loading, setLoading] = useState<boolean>(false); // Loading state - default not loading
 
     // Fetch pokemon by generation, with dependency when generation changes
     useEffect(()=>{
+        // Display loading animation while fetching data
+        setLoading(true);
         pokemonService.getPokemonByGen(generation)
-        .then(pokemon => setPokemon(pokemon))
-        .catch(err => notify.errorMsg(err));
+        .then(pokemon => {
+            setPokemon(pokemon);
+            // Stop loading animation when data fetched
+            setLoading(false);
+        })
+        .catch(err => {
+            notify.errorMsg(err);
+            // Stop loading animation if error with data
+            setLoading(false);
+        });
     }, [generation]);
 
     // Handle change of generation
@@ -31,8 +42,13 @@ function PokemonList(): JSX.Element {
 
 			<h1>Generation {generation} Pokemon</h1>
 
-            {/* For each pokemon show the pokemon in a PokemonCard component */}
-            {pokemon.map(p => <PokemonCard key={p.id} pokemon={p}/>)}
+            {/* Show loading animation while data being fetched */}
+            {loading ? (
+                <div className="loader"></div>
+            ) : (
+                // For each pokemon show the pokemon in a PokemonCard component
+                pokemon.map(p => <PokemonCard key={p.id} pokemon={p}/>)
+            )}
         </div>
     );
 }
