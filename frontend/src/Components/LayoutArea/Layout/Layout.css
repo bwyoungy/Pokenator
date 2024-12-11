@@ -1,3 +1,26 @@
 .Layout {
-	
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
+  
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    /* Ensure header stays above content */
+    z-index: 10;
+}
+  
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    /* Ensure footer stays above content */
+    z-index: 10;
+}
+  

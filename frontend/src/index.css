@@ -8,6 +8,45 @@ html, body, #root {
   flex-direction: column;
 }
 
+.Layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 20px;
+  /* Ensure header stays on top of all other content */
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 20px;
+  /* Ensure footer stays on top of all other content */
+  z-index: 10;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+main {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  flex: 1;
+  /* Enable scrolling for main content */
+  overflow-y: auto;
+  padding: 20px;
+}
+
 .Card {
   display: inline-block;
   border: 1px solid black;
